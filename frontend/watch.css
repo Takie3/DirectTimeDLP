@@ -1,0 +1,104 @@
+:root {
+    --bg-color: #000000;
+    --text-primary: #ffffff;
+    --color-operating: #00ff66;
+    --color-101: #ff9900;
+    --color-closed: #ff3333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    overflow: hidden;
+    /* No scrolling on watch, just tap */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#watch-face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.watch-text {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+#watch-carousel {
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 15%;
+    /* Keep content centered away from round edges */
+}
+
+.slide.active {
+    display: flex;
+}
+
+.attr-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+}
+
+.attr-status {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.status-OPERATING {
+    color: var(--color-operating);
+}
+
+.status-DOWN {
+    color: var(--color-101);
+}
+
+.status-CLOSED {
+    color: var(--color-closed);
+}
+
+.status-REFURBISHMENT {
+    color: #555;
+}
+
+.park-name {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+}
+
+.instructions {
+    position: absolute;
+    bottom: 5%;
+    font-size: 0.6rem;
+    color: #555;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>CastPulse Watch</title>
+    <link rel="stylesheet" href="/watch.css" />
+</head>
+
+<body>
+    <!-- SW Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+
+    <div id="watch-face">
+        <div id="loading" class="watch-text">Chargement...</div>
+        <div id="watch-carousel">
+            <!-- Rendered via JS -->
+        </div>
+    </div>
+    <script type="module" src="/watch.js"></script>
+</body>
+
+</html>

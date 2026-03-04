@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>DirectTimeDLP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="navbar">
+    <h1>DirectTimeDLP</h1>
+    <span id="last-updated">Connexion...</span>
+  </header>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <main id="app">
+    <!-- VIEW: ATTRACTIONS LIST -->
+    <section id="view-list" class="view active">
+
+      <div id="top-controls" class="top-controls">
+        <div class="controls-group">
+          <span class="control-label">Parcs :</span>
+          <button class="control-btn" id="btn-toggle-group" title="Mélanger les parcs">🔀</button>
+          <button class="control-btn" id="btn-toggle-order" title="Inverser l'ordre des parcs">↕️</button>
+        </div>
+        <div class="controls-group">
+          <span class="control-label">Trier :</span>
+          <button class="control-btn active" id="btn-sort-az">A-Z</button>
+          <button class="control-btn" id="btn-sort-time">⏳▲</button>
+        </div>
+        <div class="controls-group">
+          <span class="control-label">Filtrer :</span>
+          <button class="control-btn" id="btn-filter-alert" title="Alertes uniquement">🔔</button>
+          <button class="control-btn active" id="btn-filter-closed" title="Afficher/Masquer fermées">🔴</button>
+        </div>
+      </div>
+
+      <div id="loading" class="loading">Loading live data...</div>
+      <div id="attractions-list" class="attractions-container"></div>
+    </section>
+
+    <!-- VIEW: ALERTS MANAGER -->
+    <section id="view-alerts" class="view hidden">
+      <div class="alerts-manager-header">
+        <h2>Mes Alertes</h2>
+        <button id="btn-open-alert-form" class="save-btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">+ Nouvelle
+          Alerte</button>
+      </div>
+
+      <div class="new-alert-form hidden" id="new-alert-form">
+        <div class="form-header">
+          <h3 id="form-title">Créer une alerte</h3>
+          <button id="btn-close-alert-form" class="close-btn">&times;</button>
+        </div>
+
+        <select id="alert-attr-select" class="theme-select">
+          <option value="">-- Choisir une attraction --</option>
+          <!-- Populated via JS -->
+        </select>
+
+        <div class="alert-grid-buttons">
+          <button type="button" class="alert-option-btn" id="alert-101" data-type="101">
+            <span class="emoji">🚨</span>
+            <span>101</span>
+          </button>
+          <button type="button" class="alert-option-btn" id="alert-102" data-type="102">
+            <span class="emoji">✅</span>
+            <span>102</span>
+          </button>
+          <button type="button" class="alert-option-btn full-width" id="alert-closed" data-type="closed">
+            <span class="emoji">🔴</span>
+            <span>Fermée</span>
+          </button>
+        </div>
+
+        <div class="wait-time-section">
+          <span class="wait-time-label">⏳ Temps d'attente</span>
+          <select id="alert-time" class="theme-select wait-time-dropdown">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <button id="btn-save-alert" class="save-btn hidden">Enregistrer</button>
+        <!-- Hidden because saving is immediate per-option now? Actually wait, user said big buttons. Just treating buttons as toggles. Let's keep a save button. -->
+      </div>
+
+      <div id="alerts-list" class="alerts-container">
+        <!-- Active alerts go here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-target="view-list">
+      <span class="icon">🎡</span>
+      <span>Parcs</span>
+    </button>
+    <button class="nav-btn" data-target="view-alerts">
+      <span class="icon">🔔</span>
+      <span>Alertes</span>
+    </button>
+  </nav>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+      });
+    }
+  </script>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "castpulse-backend",
+  "version": "1.0.0",
+  "description": "DirectTimeDLP / CastPulse Backend",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "better-sqlite3": "^11.5.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
