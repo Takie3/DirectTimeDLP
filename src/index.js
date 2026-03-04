@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 import { initDatabase, updateAttractionStatus, cleanupHistory, getAllAttractions } from './database.js';
 import { fetchDisneylandParisData } from './fetcher.js';
 
@@ -12,6 +13,7 @@ const dbPath = process.env.DB_PATH || './data/castpulse.db';
 const apiUrl = process.env.THEMEPARKS_API_URL || 'https://api.themeparks.wiki/v1/entity';
 
 const app = express();
+app.use(cors());
 
 // Initialize the Database
 initDatabase(dbPath);
